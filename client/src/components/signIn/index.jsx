@@ -39,8 +39,8 @@ export default function SignIn({ setIsLoggedIn }) {
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField onChange={onEmailChange} id="standard-basic" label="Standard" placeholder="Email"/>
-            <TextField onChange={onPasswordChange} id="standard-basic" label="Standard" placeholder="Password" type="password"/>
+            <TextField onChange={onEmailChange} id="signin-email" label="Standard" placeholder="Email"/>
+            <TextField onChange={onPasswordChange} id="signin-password" label="Standard" placeholder="Password" type="password"/>
             <Button onClick={onSubmit} variant="contained" color="primary">Sign In</Button>
         </form>
     )
