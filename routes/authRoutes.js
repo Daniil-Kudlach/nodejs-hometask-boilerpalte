@@ -10,14 +10,15 @@ router.post('/login', (req, res, next) => {
                 const {email, password} = req.body;
                 const data = AuthService.login({email});
                 if (password === data.password) {
+                  res.status(200)
                   res.data = data;
-                } 
+                }
             } catch (err) {
+              res.status(400)
                 res.err = err;
             } finally {
                 next();
             }
-        next();
 }, responseMiddleware);
 
 module.exports = router;

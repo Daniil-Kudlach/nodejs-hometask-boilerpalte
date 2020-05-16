@@ -10,9 +10,11 @@ router.get('/', (req, res, next) => {
     try{
       const fighters = FighterService.getFighters();
       if (fighters) {
+        res.status(200)
         res.data = fighters;
       }
     }catch (err) {
+      res.status(400)
         res.err = err;
     } finally {
       next();
@@ -24,9 +26,11 @@ router.get('/:id', (req, res, next) => {
     const id = req.params.id;
     const foundFighter = FighterService.search({ id });
     if (foundFighter) {
+      res.status(200)
       res.data = foundFighter;
     }
   }catch (err) {
+    res.status(400)
       res.err = err;
   } finally {
       next();
@@ -36,11 +40,13 @@ router.get('/:id', (req, res, next) => {
 router.post('/', createFighterValid, (req, res, next) => {
   try{
     const validFighter = req;
-    if (validFighter) {
-      const result = UserService.create(validFighter);
+    const result = UserService.create(validFighter);
+    if (result) {
+      res.status(200)
       res.data = result;
     }
   }catch (err) {
+res.status(400)
       res.err = err;
   } finally {
       next();
@@ -52,9 +58,11 @@ try{
   const id = req.params.id;
   const updatedFighter = FighterService.update(id, fighterInfo);
   if (updatedFighter) {
+    res.status(200)
     res.data = updatedFighter;
   }
 }catch (err) {
+    res.status(400)
     res.err = err;
 } finally {
     next();
@@ -67,9 +75,11 @@ router.delete('/:id', (req, res, next) => {
     const id = req.params.id;
     const deletedFighter = FighterService.remove(id);
     if (deletedFighter) {
+      res.status(200)
       res.data = updatedFighter;
     }
   }catch (err) {
+    res.status(400)
       res.err = err;
   } finally {
       next();
