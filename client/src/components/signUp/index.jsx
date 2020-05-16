@@ -42,7 +42,7 @@ export default function SignUp({ setIsLoggedIn }) {
     const onPhoneNumberChange = (event) => {
         setPhoneNumber(event.target.value);
     }
-    
+
 
     const onSubmit = async () => {
         const data = await createUser({ email, password, firstName, lastName, phoneNumber });
@@ -54,11 +54,11 @@ export default function SignUp({ setIsLoggedIn }) {
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField key="first-name" onChange={onFirstNameChange} id="standard-basic" label="Standard" placeholder="First Name"/>
-            <TextField key="last-name" onChange={onLastNameChange} id="standard-basic" label="Standard" placeholder="Last Name"/>
-            <TextField key="email" onChange={onEmailChange} id="standard-basic" label="Standard" placeholder="Email"/>
-            <TextField key="phone" onChange={onPhoneNumberChange} id="standard-basic" label="Standard" placeholder="Phone Number"/>
-            <TextField key="password" onChange={onPasswordChange} id="standard-basic" label="Standard" placeholder="Password" type="password"/>
+            <TextField key="first-name" onChange={onFirstNameChange} id="signup-firstname" label="Standard" placeholder="First Name"/>
+            <TextField key="last-name" onChange={onLastNameChange} id="signup-lastname" label="Standard" placeholder="Last Name"/>
+            <TextField key="email" onChange={onEmailChange} id="signup-email" label="Standard" placeholder="Email"/>
+            <TextField key="phone" onChange={onPhoneNumberChange} id="signup-phone" label="Standard" placeholder="Phone Number"/>
+            <TextField key="password" onChange={onPasswordChange} id="signup-password" label="Standard" placeholder="Password" type="password"/>
             <Button onClick={onSubmit} variant="contained" color="primary">Sign Up</Button>
         </form>
     )
