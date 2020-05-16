@@ -6,60 +6,73 @@ const { createFighterValid, updateFighterValid } = require('../middlewares/fight
 const router = Router();
 
 // TODO: Implement route controllers for fighter
-router.get('/', (req, res) => {
-  const fighters = FighterService.getFighters();
-  if (fighters) {
-    res.json({error:false, body:fighters});
-  } else {
-    res.json({
-      error: true,
-      message: 'Have no fighters',
-    });
+router.get('/', (req, res, next) => {
+    try{
+      const fighters = FighterService.getFighters();
+      if (fighters) {
+        res.data = fighters;
+      }
+    }catch (err) {
+        res.err = err;
+    } finally {
+      next();
+    }
+}, responseMiddleware);
+
+router.get('/:id', (req, res, next) => {
+  try{
+    const id = req.params.id;
+    const foundFighter = FighterService.search({ id });
+    if (foundFighter) {
+      res.data = foundFighter;
+    }
+  }catch (err) {
+      res.err = err;
+  } finally {
+      next();
   }
 }, responseMiddleware);
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id;
-  const foundFighter = FighterService.search({ id });
-  if (foundFighter) {
-    res.json({error:false, body:foundFighter});
-  } else {
-    res.json({ error: true, message: 'No fighter with such id' });
+router.post('/', createFighterValid, (req, res, next) => {
+  try{
+    const validFighter = req;
+    if (validFighter) {
+      const result = UserService.create(validFighter);
+      res.data = result;
+    }
+  }catch (err) {
+      res.err = err;
+  } finally {
+      next();
   }
 }, responseMiddleware);
 
-router.post('/', createFighterValid, (req, res) => {
-  const validFighter = req;
-  if (validFighter) {
-    const result = UserService.create(validFighter);
-    res.json({result});
-  }
-});
-
-router.put('/:id', updateFighterValid, (req, res) => {
+router.put('/:id', updateFighterValid, (req, res, next) => {
+try{
   const id = req.params.id;
   const updatedFighter = FighterService.update(id, fighterInfo);
   if (updatedFighter) {
-    res.json(updatedFighter);
-  } else {
-    res.json({
-      error: true,
-      message: 'No fighter with such id',
-    });
+    res.data = updatedFighter;
   }
-});
+}catch (err) {
+    res.err = err;
+} finally {
+    next();
+}
+}, responseMiddleware);
 
 
-router.delete('/:id', (req, res) => {
-  const id = req.params.id;
-  const deletedFighter = FighterService.remove(id);
-  if (deletedFighter) {
-    res.json(deletedFighter);
-  } else {
-    res.json({
-      error: true,
-      message: 'No fighter with such id',
-    });
+router.delete('/:id', (req, res, next) => {
+  try{
+    const id = req.params.id;
+    const deletedFighter = FighterService.remove(id);
+    if (deletedFighter) {
+      res.data = updatedFighter;
+    }
+  }catch (err) {
+      res.err = err;
+  } finally {
+      next();
   }
 }, responseMiddleware);
 
