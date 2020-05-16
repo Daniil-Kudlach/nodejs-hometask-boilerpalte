@@ -1,7 +1,7 @@
 {
   "name": "nodejs-hometask",
   "version": "0.0.1",
-  "description": "Hometask for NodeJS and express lecture",
+  "description": "BSA20 nodejs hometask",
   "main": "index.js",
   "scripts": {
     "test": "sh -c 'env REPO_URL=$0 npx mocha tests/**/*.spec.js -R JSON --exit'",
@@ -13,18 +13,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DmitrijDN/nodejs-2020-private.git"
+    "url": "git+https://github.com/Daniil-Kudlach/nodejs-hometask-boilerpalte.git"
   },
   "keywords": [
     "NodeJS",
     "expressJS"
   ],
-  "author": "Dmitriy Beseda",
+  "author": "Daniil Kudlach",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DmitrijDN/nodejs-2020-private/issues"
+    "url": "https://github.com/Daniil-Kudlach/nodejs-hometask-boilerpalte/issues"
   },
-  "homepage": "https://github.com/DmitrijDN/nodejs-2020-private#readme",
+  "homepage": "https://github.com/Daniil-Kudlach/nodejs-hometask-boilerpalte#readme",
   "dependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
